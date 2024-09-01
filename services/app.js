@@ -1,9 +1,9 @@
 export default class Application {
-    constructor(userView, loggerService, errorManager) {
-        // this.ServiceLocator = serviceLocator
-        this.LoggerService = loggerService
-        this.UserView = userView;
-        this.ErrorManager = errorManager;
+    constructor(serviceLocator) {
+        this.ServiceLocator = serviceLocator
+
+        this.mainView = this.ServiceLocator.get('MainMenuView');
+        this.ErrorManager = this.ServiceLocator.get('ErrorManager');
         this.methodsToRun = [];
     }
 
@@ -14,11 +14,14 @@ export default class Application {
     async run() {
         try {
             
-           await this.UserView.view();
+           await this.mainView.view();
         } catch (error) {
             
             this.ErrorManager.capture(error);
             await this.run();
+        }
+        finally{
+            this.mainView.close();
         }
     }
 }

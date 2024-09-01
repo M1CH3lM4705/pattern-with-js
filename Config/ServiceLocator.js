@@ -13,14 +13,4 @@ export default class ServiceLocator{
         }
         return this.services.get(serviceName);
     }
-
-    // execute(serviceName, args = []) {
-    //     const service = this.get(serviceName);
-        
-    //     if (service.methodName && typeof service.instance[service.methodName] === 'function') {
-    //         return service.instance[service.methodName](...args);
-    //     } else {
-    //         return service.instance;
-    //     }
-    // }
 }

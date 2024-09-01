@@ -1,7 +1,13 @@
 export default class GenericBuilder {
     constructor(ClassType) {
-        this.instance = new ClassType();
+        this.instance = ClassType;
         this.dependencies = {};
+    }
+
+    static configure(ClassType){
+        const generic = new GenericBuilder(ClassType);
+
+        return generic;
     }
 
     #nameOf(Class){
@@ -10,19 +16,18 @@ export default class GenericBuilder {
         }
         return Class.constructor.name
     }
-    // Método para definir dependências
+
     withDependency(dependency) {
         const propertyName = this.#nameOf(dependency);
         this.dependencies[propertyName] = dependency;
         return this;
     }
 
-    // Método para construir a instância final
     build() {
-        // Injeta as dependências na instância
-        for (const [propertyName, dependency] of Object.entries(this.dependencies)) {
-            this.instance[propertyName] = dependency;
-        }
-        return this.instance;
+        
+        const i = Object.entries(this.dependencies)
+            .map(([propertyName, dependency]) => dependency)
+      
+        return new this.instance(...i);
     }
 }

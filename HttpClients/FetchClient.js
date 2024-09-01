@@ -24,7 +24,7 @@ export default class FetchClient extends HttpClient {
 
         const response = await fetch(url, options);
         if (!response.ok) {
-            throw new AppError(`HTTP error! status: ${response.status}`);
+            throw new AppError(`HTTP error! status: ${response.status}`, 'UserFriendlyErrorStrategy');
         }
         return await response.json();
 

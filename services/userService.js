@@ -43,7 +43,7 @@ export default class UserService {
         const [id, name, age] = user;
 
         if(!Guid.isValid(id))
-            throw new AppError('O id informado não é válido.')
+            throw new AppError('O id informado não é válido.', 'ValidationError')
 
         const data = new User(id, name, age);
 
@@ -56,7 +56,7 @@ export default class UserService {
         const user = await this.getUserId(id);
         
         if(!user)
-            throw new AppError('Usuário não encontrado');
+            throw new AppError('Usuário não encontrado', 'UserFriendlyErrorStrategy');
 
         await this.client.delete(`/users/${id}`);
 

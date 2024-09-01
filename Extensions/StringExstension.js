@@ -5,4 +5,5 @@ export default class StringExtension{
         }
         return Class.constructor.name
     }
+    
 }
