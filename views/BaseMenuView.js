@@ -1,13 +1,13 @@
-export default class BaseMenuView{
+export default class BaseMenuView {
   #command = '';
 
-  constructor({ serviceLocator, nameService }){
+  constructor({ serviceLocator, nameService }) {
     this.serviceLocator = serviceLocator;
     this.console = this.serviceLocator.get('Console');
     this.nameService = nameService || '';
   }
 
-  static init(obj){
+  static init(obj) {
     return new BaseMenuView(obj)
   }
 
@@ -48,7 +48,7 @@ export default class BaseMenuView{
   }
 
   async view() {
-    const service = this.nameService ? this.serviceLocator.get(this.nameService) : '' ;
+    const service = this.nameService ? this.serviceLocator.get(this.nameService) : '';
     do {
       await this.#menuView();
 
@@ -57,12 +57,12 @@ export default class BaseMenuView{
 
       const method = this.getAction(this.#command);
       await this.executeMethod(method, service);
-      debugger;
+
     } while (this.#command !== 'Sair');
 
   }
 
-  close(){
+  close() {
     this.console.close();
   }
 }

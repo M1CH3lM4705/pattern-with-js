@@ -1,10 +1,10 @@
-import BaseMenuView from "./BaseMenuView.js";
 import AppError from "../ErrorHandler/AppError.js";
+import BaseMenuView from "./BaseMenuView.js";
 
 export default class MainMenuView extends BaseMenuView {
 
   constructor({ serviceLocator }) {
-    super({serviceLocator: serviceLocator})
+    super({ serviceLocator: serviceLocator })
   }
 
   static init(obj) {
@@ -14,7 +14,8 @@ export default class MainMenuView extends BaseMenuView {
   getAction(command) {
     const method = {
       '1': { view: 'IaView', mt: 'view' },
-      '2': { view: 'UserView', mt: 'view' }
+      '2': { view: 'UserView', mt: 'view' },
+      '3': { view: 'FootballView', mt: 'view' }
     }
 
     if (!method[command])
@@ -28,19 +29,20 @@ export default class MainMenuView extends BaseMenuView {
     return [
       '1 - IA',
       '2 - Crud Usuários',
+      '3 - Futebol',
       'Para finalizar digite "Sair"\n'
     ]
   }
 
 
   async executeMethod(method, service) {
-    
-        const { view, mt } = method;
 
-        const sv = this.serviceLocator.get(view);
+    const { view, mt } = method;
 
-        await sv[mt]();
-    
+    const sv = this.serviceLocator.get(view);
+
+    await sv[mt]();
+
   }
 
 }

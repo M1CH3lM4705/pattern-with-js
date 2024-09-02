@@ -1,7 +1,5 @@
-import dotenv from 'dotenv';
+import '../Config/dotenvConfig.js'
 import { GoogleGenerativeAI } from '@google/generative-ai';
-
-dotenv.config({ path: '.env.local' })
 
 export default class GeminiClient {
   #api_key = process.env.API_KEY;
