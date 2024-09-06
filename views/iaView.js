@@ -1,13 +1,13 @@
 import AppError from "../ErrorHandler/AppError.js";
 import BaseMenuView from "./BaseMenuView.js";
 
-export default class IaView extends BaseMenuView{
+export default class IaView extends BaseMenuView {
 
-  constructor(params){
-    super({...params, nameService: 'IaService'})
+  constructor(params) {
+    super({ ...params, nameService: 'IaService' })
   }
 
-  static init(obj){
+  static init(obj) {
     return new IaView(obj);
   }
 
@@ -17,7 +17,7 @@ export default class IaView extends BaseMenuView{
     }
 
     if (!method[command])
-      throw new AppError("comando não encontrado");
+      throw new AppError("comando não encontrado", 'UserFriendlyError');
 
     return method[command]
       ;

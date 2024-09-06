@@ -19,7 +19,7 @@ export default class MainMenuView extends BaseMenuView {
     }
 
     if (!method[command])
-      throw new AppError("comando não encontrado", 'UserFriendlyErrorStrategy');
+      throw new AppError("comando não encontrado", 'UserFriendlyError');
 
     return method[command]
       ;

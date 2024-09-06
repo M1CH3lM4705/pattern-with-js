@@ -1,5 +1,6 @@
 import AppError from "../ErrorHandler/AppError.js";
 import BaseMenuView from "./BaseMenuView.js";
+import FootballSubmenuView from "./FootballSubmenuView.js";
 
 export default class FootballView extends BaseMenuView {
   constructor(params) {
@@ -12,14 +13,14 @@ export default class FootballView extends BaseMenuView {
 
   getAction(command) {
     const method = {
-      'BSA': ['getLeague', 'BSA'],
-      'BL1': ['getLeague', 'BL1'],
-      'DED': ['getLeague', 'DED'],
-      'PD': ['getLeague', 'PD']
+      'BSA': ['BSA'],
+      'BL1': ['BL1'],
+      'DED': ['DED'],
+      'PD': ['PD']
     }
 
     if (!method[command.toUpperCase()])
-      throw new AppError("comando não encontrado", "UserFriendlyErrorStrategy");
+      throw new AppError("comando não encontrado", "UserFriendlyError");
 
     return method[command.toUpperCase()];
   }
@@ -35,10 +36,14 @@ export default class FootballView extends BaseMenuView {
   }
 
   async executeMethod(method) {
-    const [mt, command] = method;
+    const [command] = method;
 
-    const service = this.serviceLocator.get(this.nameService);
+    const service = FootballSubmenuView.init({
+      serviceLocator: this.serviceLocator,
+      nameService: this.nameService,
+      league: command
+    })
 
-    service[mt](command);
+    await service.view();
   }
 }

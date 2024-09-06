@@ -52,13 +52,13 @@ export default class BaseMenuView {
     do {
       await this.#menuView();
 
-      if (this.#command === 'Sair')
+      if (this.#command.toLowerCase() === 'Sair'.toLowerCase())
         break;
 
       const method = this.getAction(this.#command);
       await this.executeMethod(method, service);
 
-    } while (this.#command !== 'Sair');
+    } while (this.#command.toLowerCase() !== 'Sair'.toLowerCase());
 
   }
 

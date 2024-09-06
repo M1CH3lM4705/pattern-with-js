@@ -7,21 +7,22 @@ export default class Application {
         this.methodsToRun = [];
     }
 
-    addMethodToRun(serviceName, methodName, args = [] ){
-        this.methodsToRun.push({serviceName, methodName, args});
+    addMethodToRun(serviceName, methodName, args = []) {
+        this.methodsToRun.push({ serviceName, methodName, args });
     }
 
     async run() {
         try {
-            
-           await this.mainView.view();
+
+            await this.mainView.view();
         } catch (error) {
-            
+
             this.ErrorManager.capture(error);
             await this.run();
         }
-        finally{
+        finally {
             this.mainView.close();
+            process.exit(0);
         }
     }
 }
