@@ -12,4 +12,19 @@ O cabeçalho deve está em pt-br e, tente deixar alinhado as colunas com o cabe�
 Me retorne somente tabela no formato string. não quero função javascript.
     `
   }
+
+  static promptMatches(obj) {
+    return `
+      '${JSON.stringify(obj)}'
+
+      Formato: Um array de objetos JavaScript, onde cada objeto representa um jogo com as propriedades: timeDaCasa, placar, visitante e vencedor.
+Objetivo: Transformar esses dados em uma string formatada como uma tabela, com as colunas "Time da casa", "Placar" e "Visitante". Me retorne somente tabela no formato string. não quero função javascript.
+
+______________________________________________
+|Time da casa          Placar      Visitante  |
+
+|Flamanego            (2) x (1)         Vasco |
+_______________________________________________
+    `
+  }
 }

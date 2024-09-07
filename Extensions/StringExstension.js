@@ -8,6 +8,11 @@ export default class StringExtension {
         return Class.constructor.name
     }
 
+    /**
+     * 
+     * @param {string} text é um texto no formato markdown
+     * @returns {string}
+     */
     static parsedMarkdown(text) {
         const marked = Marked.init();
         const pureText = marked.converter(text);

@@ -24,9 +24,25 @@ export default class FootballService {
     this.loggerService.log('Aguarde... buscando partidas');
     const response = await this.httpClient.get(`/competitions/${league}/matches`, this.headers)
 
+    const listFootball = ResponseFootbal.fromJSON(response);
+
+    const obj = await this.getMatchs(league, listFootball.currentMatchDay);
+
+    const matchPromptTableString = PromptAi.promptMatches(obj.matchesShow());
+
+    const text = await this.ai.getPrompt(matchPromptTableString);
+
+    const result = StringExtension.parsedMarkdown(text);
+
+    result.forEach((item) => this.loggerService.dir(item));
+  }
+
+  async getMatchs(league, currentMatchDay) {
+    const response = await this.httpClient.get(`/competitions/${league}/matches?matchday=${currentMatchDay}`, this.headers)
+
     const obj = ResponseFootbal.fromJSON(response);
 
-    this.loggerService.dir(obj.matches);
+    return obj;
   }
 
   async getStandings(league) {
@@ -42,6 +58,6 @@ export default class FootballService {
 
     const result = StringExtension.parsedMarkdown(text);
 
-    this.loggerService.dir(result);
+    result.forEach((item) => this.loggerService.dir(item))
   }
 }

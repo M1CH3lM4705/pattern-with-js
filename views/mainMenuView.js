@@ -15,7 +15,8 @@ export default class MainMenuView extends BaseMenuView {
     const method = {
       '1': { view: 'IaView', mt: 'view' },
       '2': { view: 'UserView', mt: 'view' },
-      '3': { view: 'FootballView', mt: 'view' }
+      '3': { view: 'FootballView', mt: 'view' },
+      '4': { view: 'WeatherView', mt: 'view' }
     }
 
     if (!method[command])
@@ -30,6 +31,7 @@ export default class MainMenuView extends BaseMenuView {
       '1 - IA',
       '2 - Crud Usuários',
       '3 - Futebol',
+      '4 - Visualizar clima',
       'Para finalizar digite "Sair"\n'
     ]
   }

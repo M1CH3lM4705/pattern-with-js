@@ -24,8 +24,8 @@ export default class FootballSubmenuView extends BaseMenuView {
 
   options() {
     return [
-      '1 - Para obter a liga',
-      '2 - Para obter a classificação',
+      '1 - Para obter as partidas',
+      '2 - Para obter a tabela de classificação\n',
       'Para finalizar digite "Sair"\n'
     ];
   }
