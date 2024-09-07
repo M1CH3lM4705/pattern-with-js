@@ -29,9 +29,7 @@ export default class IaService {
     this.history.addMessage(new Message(prompt, lines))
     this.careTaker.save(this.history);
 
-    lines.forEach((line) => {
-      this.LoggerService.log(line)
-    })
+    return lines;
   }
 
 }

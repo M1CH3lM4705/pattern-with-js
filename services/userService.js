@@ -12,54 +12,52 @@ export default class UserService {
     async getUsers() {
         this.LoggerService.log('[INFO] Buscando usuários')
         const users = await this.client.get('/users')
-        
+
         this.users = users.map(({ id, name, age }) => {
             return new User(id, name, age)
         })
 
-        this.LoggerService.log(this.users)
+        return this.users;
     }
 
-    async getUserId(id){
+    async getUserId(id) {
         this.LoggerService.log(`[INFO] Buscando usuário com id: ${id}`);
 
         const user = await this.client.get(`/users/${id}`);
 
-        this.LoggerService.log(new User(user.id, user.name, user.age));
-
-        return user;
+        return new User(user.id, user.name, user.age);
     }
 
-    async createUser(...user){
+    async createUser(...user) {
         const [name, age] = user;
         const data = new User(null, name, age)
-        
+
         await this.client.post('/users', data);
 
-        this.LoggerService.log(data);
+        return data;
     }
 
-    async updateUser(...user){
+    async updateUser(...user) {
         const [id, name, age] = user;
 
-        if(!Guid.isValid(id))
+        if (!Guid.isValid(id))
             throw new AppError('O id informado não é válido.', 'ValidationError')
 
         const data = new User(id, name, age);
 
         await this.client.put(`/users/${id}`, data)
 
-        this.LoggerService.log(data);
+        return data;
     }
 
-    async deleteUser(id){
+    async deleteUser(id) {
         const user = await this.getUserId(id);
-        
-        if(!user)
+
+        if (!user)
             throw new AppError('Usuário não encontrado', 'UserFriendlyErrorStrategy');
 
         await this.client.delete(`/users/${id}`);
 
-        this.LoggerService.log(`O usuário '${user.name}' deletado`);
+        return `O usuário '${user.name}' deletado`;
     }
 }

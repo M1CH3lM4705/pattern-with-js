@@ -19,6 +19,6 @@ export default class WeatherService {
 
     const weather = Waether.fromJSON(response);
 
-    this.loggerService.dir(weather);
+    return weather;
   }
 }

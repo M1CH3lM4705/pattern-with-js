@@ -34,7 +34,7 @@ export default class FootballService {
 
     const result = StringExtension.parsedMarkdown(text);
 
-    result.forEach((item) => this.loggerService.dir(item));
+    return result;
   }
 
   async getMatchs(league, currentMatchDay) {
@@ -58,6 +58,6 @@ export default class FootballService {
 
     const result = StringExtension.parsedMarkdown(text);
 
-    result.forEach((item) => this.loggerService.dir(item))
+    return result;
   }
 }

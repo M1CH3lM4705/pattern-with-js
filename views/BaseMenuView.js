@@ -24,9 +24,9 @@ export default class BaseMenuView {
           args.push(answer);
         }
 
-        await service[mt](...args);
+        console.log(await service[mt](...args));
       } else {
-        await service[method]();
+        console.log(await service[method]());
       }
     } catch (error) {
       this.serviceLocator.get('ErrorManager').capture(error);

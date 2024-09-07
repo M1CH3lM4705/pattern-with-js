@@ -35,6 +35,12 @@ export default class FootballSubmenuView extends BaseMenuView {
 
     const service = this.serviceLocator.get(this.nameService);
 
-    await service[mt](command);
+    const stringStream = await service[mt](command);
+
+    if (stringStream instanceof Array) {
+      stringStream.forEach(s => console.log(s))
+      return;
+    }
+    console.log(stringStream);
   }
 }
