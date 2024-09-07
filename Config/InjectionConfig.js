@@ -7,6 +7,7 @@ import FootballService from "../services/footballService.js";
 import IaService from "../services/iaService.js";
 import LoggerService from "../services/logService.js";
 import UserService from "../services/userService.js";
+import Cli from '../views/cli/Cli.js';
 import Console from "../views/console.js";
 import FootballView from '../views/footballView.js';
 import IaView from "../views/iaView.js";
@@ -44,6 +45,7 @@ export default class InjectionConfig {
     this.serviceLocator.register(UserView.init({ serviceLocator: this.serviceLocator }));
     this.serviceLocator.register(FootballView.init({ serviceLocator: this.serviceLocator }))
     this.serviceLocator.register(MainMenuView.init({ serviceLocator: this.serviceLocator }));
+    this.serviceLocator.register(Cli.init({ serviceLocator: this.serviceLocator }));
 
   }
 }

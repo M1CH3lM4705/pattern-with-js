@@ -4,6 +4,7 @@ export default class Application {
 
         this.mainView = this.ServiceLocator.get('MainMenuView');
         this.ErrorManager = this.ServiceLocator.get('ErrorManager');
+        this.cli = this.ServiceLocator.get('Cli');
         this.methodsToRun = [];
     }
 
@@ -14,15 +15,14 @@ export default class Application {
     async run() {
         try {
 
-            await this.mainView.view();
+            this.cli.execute(process.argv);
         } catch (error) {
 
             this.ErrorManager.capture(error);
-            await this.run();
         }
-        finally {
-            this.mainView.close();
-            process.exit(0);
-        }
+        // finally {
+        //     this.mainView.close();
+        //     process.exit(0);
+        // }
     }
 }
