@@ -1,3 +1,4 @@
+import DateHelper from "../../Helpers/dateHelper.js";
 import WeatherCondition from "./WeatherCondition.js";
 
 export default class Waether {
@@ -15,5 +16,15 @@ export default class Waether {
       json.atualizado_em,
       json.clima.map(wc => WeatherCondition.fromJSON(wc))
     )
+  }
+
+  toString() {
+    const outPut = `
+      Cidade: ${this.city}, ${this.state}
+      Ultima atualização: ${DateHelper.date(this.updateAt)}
+      ${this.weatherCondition.map(w => w.toString())}
+    `
+
+    return outPut;
   }
 }

@@ -4,6 +4,7 @@ export default class BaseMenuView {
   constructor({ serviceLocator, nameService }) {
     this.serviceLocator = serviceLocator;
     this.console = this.serviceLocator.get('Console');
+    this.logger = this.serviceLocator.get('LoggerService');
     this.nameService = nameService || '';
   }
 
@@ -24,9 +25,9 @@ export default class BaseMenuView {
           args.push(answer);
         }
 
-        console.log(await service[mt](...args));
+        this.logger.log(await service[mt](...args));
       } else {
-        console.log(await service[method]());
+        this.logger.log(await service[method]());
       }
     } catch (error) {
       this.serviceLocator.get('ErrorManager').capture(error);

@@ -19,6 +19,7 @@
 .env.production.local
 .eslintcache
 .swc
+app.bat
 
 npm-debug.log*
 yarn-debug.log*

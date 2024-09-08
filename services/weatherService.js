@@ -19,6 +19,6 @@ export default class WeatherService {
 
     const weather = Waether.fromJSON(response);
 
-    return weather;
+    return weather.toString();
   }
 }

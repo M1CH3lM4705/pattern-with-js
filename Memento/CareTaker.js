@@ -9,7 +9,7 @@ export default class CareTaker {
 
   undo(hs) {
     if (this.history.length > 0) {
-      hs.restore(this.history.pop());
+      hs.restoreState(this.history.pop());
     }
   }
 }
