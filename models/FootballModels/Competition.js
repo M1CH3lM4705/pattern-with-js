@@ -8,6 +8,7 @@ export default class Competition extends CompetitionBase {
   }
 
   static fromJSON(json) {
+    if (!json) return;
     const entityBase = super.fromJSON(json);
     return new this(entityBase.id, entityBase.name, entityBase.code, json.type, json.emblem);
   }

@@ -10,6 +10,7 @@ import IaService from "../services/iaService.js";
 import LoggerService from "../services/logService.js";
 import UserService from "../services/userService.js";
 import WeatherService from '../services/weatherService.js';
+import TeamsSingleton from '../Singleton/TeamsSingleton.js';
 import Console from "../views/console.js";
 import FootballView from '../views/footballView.js';
 import IaView from "../views/iaView.js";
@@ -33,6 +34,7 @@ export default class InjectionConfig {
     const loggerService = new LoggerService();
     const marked = Marked.init();
 
+    this.serviceLocator.register(new TeamsSingleton())
     this.serviceLocator.register(marked);
     this.serviceLocator.register(new History())
     this.serviceLocator.register(new CareTaker())

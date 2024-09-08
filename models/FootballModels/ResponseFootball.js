@@ -30,7 +30,7 @@ export default class ResponseFootball {
     const result = this.matches.reduce((acc, match) => {
       const obj = {
         timeDaCasa: match.homeTeam.shortName,
-        placar: `(${match.score.fulltime.home}) x (${match.score.fulltime.away})`,
+        placar: `(${match.score.fulltime.home ?? 0}) x (${match.score.fulltime.away ?? 0})`,
         visitante: match.awayTeam.shortName,
         vencedor: match.score.winner
       }
@@ -38,5 +38,12 @@ export default class ResponseFootball {
       return acc;
     }, []);
     return result;
+  }
+
+  selectListTeams(singletonTeam) {
+    this.matches.forEach(match => {
+      singletonTeam.add(match.homeTeam.selectOptionTeam());
+      singletonTeam.add(match.awayTeam.selectOptionTeam());
+    })
   }
 }

@@ -43,7 +43,7 @@ export default class BaseMenuView {
   }
 
   async #menuView() {
-    this.console.writeLine('Selecione uma opção:\n');
+    this.console.writeLine('\nSelecione uma opção:\n');
     this.options().forEach(text => this.console.writeLine(text));
     this.#command = await this.console.prompt('Digite o valor: ');
   }
