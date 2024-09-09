@@ -46,7 +46,7 @@ export default class FootballService {
   async getTeams(league) {
     const obj = await this.#getLeagues(league);
 
-    obj.selectListTeams(this.singleton);
+    obj.selectListTeams(league, this.singleton);
   }
 
   async getMatchs(league, currentMatchDay) {

@@ -22,12 +22,13 @@ export default class BaseMenuView {
 
         for (const question of questionsArray) {
           const answer = await this.console.prompt(`${question}: `);
+          this.console.writeLine('');
           args.push(answer);
         }
 
-        this.logger.log(await service[mt](...args));
+        this.console.writeLine(await service[mt](...args));
       } else {
-        this.logger.log(await service[method]());
+        this.console.writeLine(await service[method]());
       }
     } catch (error) {
       this.serviceLocator.get('ErrorManager').capture(error);

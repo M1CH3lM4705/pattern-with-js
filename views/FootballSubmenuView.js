@@ -42,7 +42,7 @@ export default class FootballSubmenuView extends BaseMenuView {
       await service[mt](command);
       const [met, question] = arr;
       mt = met;
-      this.console.writeLine(singleton.getTeams() + '\n')
+      this.console.writeLine(singleton.getTeams(this.league) + '\n')
       command = await this.console.prompt(question);
       this.console.writeLine('');
     }

@@ -1,14 +1,14 @@
-import readline from 'node:readline'
+import readline from 'node:readline';
 
-export default class Console{
-  constructor(){
+export default class Console {
+  constructor() {
     this.rl = readline.createInterface({
-      input:process.stdin,
+      input: process.stdin,
       output: process.stdout,
     });
   }
 
-  prompt(query){
+  prompt(query) {
     return new Promise((resolve) => {
       this.rl.question(query, (answer) => {
         resolve(answer);
@@ -16,15 +16,20 @@ export default class Console{
     })
   }
 
-  writeLine(text){
-    this.rl.output.write(text + '\n');
+  writeLine(text) {
+    if (!Array.isArray(text)) {
+      this.rl.output.write(text.toString() + '\n');
+      return;
+    }
+
+    text.forEach(t => this.rl.output.write(t.toString() + '\n'));
   }
 
-  close(){
+  close() {
     this.rl.close();
   }
 
-  get cls(){
+  get cls() {
     this.rl.output.write('\x1Bc')
   }
 }

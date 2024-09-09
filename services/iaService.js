@@ -29,9 +29,7 @@ export default class IaService {
     this.history.addMessage(new Message(prompt, lines))
     this.careTaker.save(this.history);
 
-    const [content] = lines
-
-    return content;
+    return lines;
   }
 
 }

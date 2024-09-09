@@ -40,10 +40,10 @@ export default class ResponseFootball {
     return result;
   }
 
-  selectListTeams(singletonTeam) {
+  selectListTeams(league, singletonTeam) {
     this.matches.forEach(match => {
-      singletonTeam.add(match.homeTeam.selectOptionTeam());
-      singletonTeam.add(match.awayTeam.selectOptionTeam());
+      singletonTeam.add(league, match.homeTeam.selectOptionTeam());
+      singletonTeam.add(league, match.awayTeam.selectOptionTeam());
     })
   }
 }

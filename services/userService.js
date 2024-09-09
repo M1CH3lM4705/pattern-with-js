@@ -6,7 +6,7 @@ export default class UserService {
     constructor(loggerService, fetchClient) {
         this.LoggerService = loggerService;
         this.client = fetchClient
-        this.LoggerService.log('[INFO] Instancia de user service criada')
+
     }
 
     async getUsers() {
