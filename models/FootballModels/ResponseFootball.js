@@ -29,10 +29,11 @@ export default class ResponseFootball {
   matchesShow() {
     const result = this.matches.reduce((acc, match) => {
       const obj = {
-        timeDaCasa: match.homeTeam.shortName,
+        timeDaCasa: match.homeTeam.name,
         placar: `(${match.score.fulltime.home ?? 0}) x (${match.score.fulltime.away ?? 0})`,
-        visitante: match.awayTeam.shortName,
-        vencedor: match.score.winner
+        visitante: match.awayTeam.name,
+        vencedor: match.score.winner,
+        data_hora: match.utcDate
       }
       acc.push(obj)
       return acc;

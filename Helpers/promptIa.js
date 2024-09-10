@@ -18,13 +18,14 @@ Me retorne somente tabela no formato string. não quero função javascript.
       '${JSON.stringify(obj)}'
 
       Formato: Um array de objetos JavaScript, onde cada objeto representa um jogo com as propriedades: timeDaCasa, placar, visitante e vencedor.
-Objetivo: Transformar esses dados em uma string formatada como uma tabela, com as colunas "Time da casa", "Placar" e "Visitante". Me retorne somente tabela no formato string. não quero função javascript.
+Objetivo: Transformar esses dados em uma string formatada como uma tabela, com as colunas "Time da casa", "Placar", "Visitante" e data e hora. 
+Me retorne somente tabela no formato string. não quero função javascript.
 
-______________________________________________
-|Time da casa          Placar      Visitante  |
+______________________________________________________________________ 
+|Time da casa          Placar      Visitante            Data/Hora    |
 
-|Flamanego            (2) x (1)         Vasco |
-_______________________________________________
+|Flamanego            (2) x (1)         Vasco        10/09/2024 16h00|
+______________________________________________________________________
     `
   }
 }

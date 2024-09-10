@@ -31,6 +31,7 @@ export default class FootballView extends BaseMenuView {
       'BL1 - Para Bundesliga (Alemão)',
       'DED - Para Eredivisie (Holandes)',
       'PD - Para Primeira Liga (Espanhol)',
+      'PL - Para Premier League (Ingles)\n',
       'Para finalizar digite "Sair"\n'
     ]
   }
