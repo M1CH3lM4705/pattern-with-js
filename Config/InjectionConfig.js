@@ -1,3 +1,4 @@
+import pkg from 'whatsapp-web.js';
 import '../Config/dotenvConfig.js';
 import ErrorManagerFactory from "../factory/ErrorManagerFactory.js";
 import HttpClientFactory from "../factory/HttpClientFactory.js";
@@ -17,6 +18,7 @@ import IaView from "../views/iaView.js";
 import MainMenuView from "../views/mainMenuView.js";
 import UserView from "../views/userView.js";
 import WeatherView from '../views/WeatherView.js';
+const { Client, LocalAuth } = pkg;
 
 export default class InjectionConfig {
   constructor({ serviceLocator }) {
@@ -33,12 +35,16 @@ export default class InjectionConfig {
   #initInstances() {
     const loggerService = new LoggerService();
     const marked = Marked.init();
+    const client = new Client({
+      authStrategy: new LocalAuth()
+    });
 
     this.serviceLocator.register(new TeamsSingleton())
     this.serviceLocator.register(marked);
     this.serviceLocator.register(new History())
     this.serviceLocator.register(new CareTaker())
     this.serviceLocator.register(GeminiClient.init());
+    // this.serviceLocator.register(Chatbot.init({ serviceLocator: this.serviceLocator, client: client }))
     this.serviceLocator.register(new LoggerService());
     this.serviceLocator.register(new UserService(loggerService, HttpClientFactory.create('http://localhost:3000')));
     this.serviceLocator.register(WeatherService.init({

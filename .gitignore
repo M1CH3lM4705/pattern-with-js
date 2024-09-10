@@ -19,6 +19,8 @@
 .env.production.local
 .eslintcache
 .swc
+.wwebjs_auth/
+.wwebjs_cache/
 app.bat
 
 npm-debug.log*
