@@ -1,18 +1,31 @@
-export default class BaseMenuView {
-  #command = '';
+import IServiceLocator from "../Interfaces/IServiceLocator";
+import LoggerService from "../services/logService";
+import Console from "./console";
 
-  constructor({ serviceLocator, nameService }) {
+export type BaseMenuViewProps = {
+  serviceLocator: IServiceLocator;
+  nameService: string;
+}
+
+export default class BaseMenuView {
+  private _command: string = '';
+  private readonly serviceLocator: IServiceLocator;
+  private readonly console: Console;
+  private readonly logger: LoggerService;
+  private nameService: string = '';
+
+  constructor({ serviceLocator, nameService }: BaseMenuViewProps) {
     this.serviceLocator = serviceLocator;
     this.console = this.serviceLocator.get('Console');
     this.logger = this.serviceLocator.get('LoggerService');
-    this.nameService = nameService || '';
+    this.nameService = nameService;
   }
 
-  static init(obj) {
+  static init(obj: BaseMenuViewProps) {
     return new BaseMenuView(obj)
   }
 
-  async executeMethod(method, service) {
+  async executeMethod(method: string | [string, string[]], service: Record<string, (...args: any[]) => any>) {
     try {
       if (typeof method === 'object') {
         const [mt, questions] = method;
@@ -35,18 +48,18 @@ export default class BaseMenuView {
     }
   }
 
-  getAction(command) {
+  getAction(command: string): [string, string[]] {
     throw new Error('selectedMethod deve ser implementado na subclasse');
   }
 
-  options() {
+  options(): Array<string> {
     throw new Error('options deve ser implementado na subclasse');
   }
 
   async #menuView() {
     this.console.writeLine('\nSelecione uma opção:\n');
     this.options().forEach(text => this.console.writeLine(text));
-    this.#command = await this.console.prompt('Digite o valor: ');
+    this._command = await this.console.prompt('Digite o valor: ');
   }
 
   async view() {
@@ -54,13 +67,13 @@ export default class BaseMenuView {
     do {
       await this.#menuView();
 
-      if (this.#command.toLowerCase() === 'Sair'.toLowerCase())
+      if (this._command.toLowerCase() === 'Sair'.toLowerCase())
         break;
 
-      const method = this.getAction(this.#command);
+      const method = this.getAction(this._command);
       await this.executeMethod(method, service);
 
-    } while (this.#command.toLowerCase() !== 'Sair'.toLowerCase());
+    } while (this._command.toLowerCase() !== 'Sair'.toLowerCase());
 
   }
 

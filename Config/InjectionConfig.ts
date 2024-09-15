@@ -1,7 +1,7 @@
-import '../Config/dotenvConfig.js';
 import ErrorManagerFactory from "../factory/ErrorManagerFactory.js";
 import HttpClientFactory from "../factory/HttpClientFactory.js";
 import GeminiClient from "../HttpClients/GeminiClient.js";
+import IServiceLocator from '../Interfaces/IServiceLocator.js';
 import Marked from "../lib/Marked.js";
 import CareTaker from '../Memento/CareTaker.js';
 import History from '../Memento/History.js';
@@ -17,20 +17,27 @@ import IaView from "../views/iaView.js";
 import MainMenuView from "../views/mainMenuView.js";
 import UserView from "../views/userView.js";
 import WeatherView from '../views/WeatherView.js';
+import './dotenvConfig.js';
+
+type InjectionProps = {
+  serviceLocator: IServiceLocator;
+}
 
 export default class InjectionConfig {
-  constructor({ serviceLocator }) {
+  private readonly serviceLocator: IServiceLocator;
+
+  constructor({ serviceLocator }: InjectionProps) {
     this.serviceLocator = serviceLocator;
 
   }
 
-  static init(obj) {
+  static init(obj: InjectionProps) {
     const injection = new InjectionConfig(obj);
 
     injection.#initInstances();
   }
 
-  #initInstances() {
+  #initInstances(): void {
     const loggerService = new LoggerService();
     const marked = Marked.init();
 
