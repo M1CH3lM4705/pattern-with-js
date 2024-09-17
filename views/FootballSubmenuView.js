@@ -12,9 +12,9 @@ export default class FootballSubmenuView extends BaseMenuView {
 
   getAction(command) {
     const method = {
-      '1': ['getLeague', this.league],
-      '2': ['getStandings', this.league],
-      '3': ['getTeams', this.league, ['getMatchsTeam', 'Digite o id do time: ']],
+      '1': ['getLeague'],
+      '2': ['getStandings'],
+      '3': ['getTeams', ['getMatchsTeam', 'Digite o id do time: ']],
     };
 
     if (!method[command])
@@ -33,13 +33,13 @@ export default class FootballSubmenuView extends BaseMenuView {
   }
 
   async executeMethod(method) {
-    let [mt, command, arr] = method;
+    let [mt, arr] = method;
     const service = this.serviceLocator.get(this.nameService);
     const singleton = this.serviceLocator.get('TeamsSingleton');
 
     if (arr) {
 
-      await service[mt](command);
+      await service[mt](this.league);
       const [met, question] = arr;
       mt = met;
       this.console.writeLine(singleton.getTeams(this.league) + '\n')

@@ -1,15 +1,15 @@
 import AppError from '../ErrorHandler/AppError.js';
-import HttpClient from './HttpClient.js'
+import HttpClient from './HttpClient.js';
 
 export default class FetchClient extends HttpClient {
     constructor(baseUrl = '') {
         super(baseUrl)
     }
 
-    async request(endpoint, method = 'GET', data = null, headers = {}) {
+    async request(endpoint: string, method: string = 'GET', data: any = null, headers: Record<string, string> = {}): Promise<any> {
         const url = `${this.baseUrl}${endpoint}`;
 
-        const options = {
+        const options: RequestInit = {
             method,
             headers: {
                 'Content-Type': 'application/json',

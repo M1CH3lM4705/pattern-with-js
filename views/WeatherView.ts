@@ -3,32 +3,26 @@ import IServiceLocator from "../Interfaces/IServiceLocator.js";
 import { MethodType } from "../Interfaces/types/MethodType.js";
 import BaseMenuView from "./BaseMenuView.js";
 
-type UserViewProps = {
+type WeatherViewProps = {
   serviceLocator: IServiceLocator;
 }
 
-
-export default class UserView extends BaseMenuView {
-
-  constructor(params: UserViewProps) {
-    super({ ...params, nameService: 'UserService' })
+export default class WeatherView extends BaseMenuView {
+  constructor(params: WeatherViewProps) {
+    super({ ...params, nameService: 'WeatherService' })
   }
 
-  static init(obj: UserViewProps): UserView {
-    return new UserView(obj);
+  static init(obj: WeatherViewProps): WeatherView {
+    return new this(obj);
   }
 
   getAction(command: string): [string, string[]] {
     const method: Record<string, MethodType> = {
-      '1': 'getUsers',
-      '2': ['getUserId', 'Digite o id do usuário '],
-      '3': ['createUser', ['Digite o nome ', 'Digite a idade ']],
-      '4': ['updateUser', ['Digite o id do usuário ', 'Digite o nome ', 'Digite a idade ']],
-      '5': ['deleteUser', 'Digite o id do usuário ']
+      '1': 'getWeather',
     }
 
     if (!method[command])
-      throw new AppError("comando não encontrado");
+      throw new AppError("comando não encontrado", 'UserFriendlyError');
 
     const action = method[command];
 
@@ -44,11 +38,7 @@ export default class UserView extends BaseMenuView {
 
   options(): Array<string> {
     return [
-      '1 - Consultar todos os usuários',
-      '2 - Consulta usuário pelo seu id',
-      '3 - Cadastrar usuário',
-      '4 - Atualizar usuário',
-      '5 - Remover usuário',
+      '1 - Para consultar clima\n',
       'Para finalizar digite "Sair"\n'
     ]
   }

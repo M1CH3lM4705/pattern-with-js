@@ -1,5 +1,7 @@
-export default class LoggerService {
-    log(message) {
+import ILoggerService from '../Interfaces/ILoggerService';
+
+export default class LoggerService implements ILoggerService {
+    log(message: string | object): void {
         if (typeof message === 'object') {
             console.log(message, '\n')
             return;
@@ -7,7 +9,7 @@ export default class LoggerService {
         console.log(`Log: ${message} \n`);
     }
 
-    dir(message) {
+    dir(message: string): void {
         console.dir(message)
     }
 }
