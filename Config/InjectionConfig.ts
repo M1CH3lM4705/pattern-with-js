@@ -2,7 +2,7 @@ import ErrorManagerFactory from "../factory/ErrorManagerFactory.js";
 import HttpClientFactory from "../factory/HttpClientFactory.js";
 import GeminiClient from "../HttpClients/GeminiClient.js";
 import IServiceLocator from '../Interfaces/IServiceLocator.js';
-import Marked from "../lib/Marked.js";
+import Marked from "../lib/Marke_d.js";
 import CareTaker from '../Memento/CareTaker.js';
 import History from '../Memento/History.js';
 import FootballService from "../services/footballService.js";

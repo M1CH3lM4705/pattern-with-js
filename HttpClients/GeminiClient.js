@@ -1,5 +1,5 @@
-import '../Config/dotenvConfig.js'
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import '../Config/dotenvConfig.js';
 
 export default class GeminiClient {
   #api_key = process.env.API_KEY;
@@ -10,7 +10,7 @@ export default class GeminiClient {
   constructor() {
     this.#genAi = new GoogleGenerativeAI(this.#api_key);
     this.#model = this.#genAi.getGenerativeModel({ model: this.#ia_model }); //gemini-1.5-flash
-    
+
   }
 
   static init() {

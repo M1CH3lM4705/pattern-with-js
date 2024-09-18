@@ -7,7 +7,7 @@ export default abstract class HttpClient implements IHttpClient {
         this.baseUrl = baseUrl;
     }
 
-    abstract request(endpoint: string, method: string, data: any, headers: Record<string, string | undefined>): Promise<any>;
+    abstract request(endpoint: string, method: string, data: any, headers?: Record<string, string | undefined>): Promise<any>;
 
     get(endpoint: string, headers: Record<string, string | undefined> = {}): Promise<any> {
         return this.request(endpoint, 'GET', null, headers);

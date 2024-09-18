@@ -1,4 +1,4 @@
-import Marked from "../lib/Marked.js";
+import Marked from "../lib/Marke_d.js";
 
 export default class StringExtension {
     static nameOf(Class) {
